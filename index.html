@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RUNVARA Content Command</title>
+    <meta
+      name="description"
+      content="AI-assisted trucking content calendar, video workflow, approvals, and publishing controls for YouTube, Facebook, and Instagram."
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d232b'/%3E%3Cpath d='M12 39h8l6-14h16l10 14h5v7h-7a8 8 0 0 1-16 0H29a8 8 0 0 1-16 0h-1z' fill='%23f04438'/%3E%3Cpath d='M28 30h11l5 7H25z' fill='%23ffffff'/%3E%3Ccircle cx='21' cy='46' r='4' fill='%231d232b'/%3E%3Ccircle cx='42' cy='46' r='4' fill='%231d232b'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Workspace navigation">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true">R</div>
+          <div>
+            <strong>RUNVARA</strong>
+            <span>Content Command</span>
+          </div>
+        </div>
+        <nav class="nav-list" aria-label="Sections">
+          <a href="#calendar" class="is-active">Calendar</a>
+          <a href="#agents">14 Agents</a>
+          <a href="#studio">Video Studio</a>
+          <a href="#approval">Approvals</a>
+          <a href="#publishing">Publishing</a>
+        </nav>
+        <div class="sidebar-panel">
+          <span class="eyebrow">Campaign</span>
+          <strong>Trucking growth loop</strong>
+          <p>Daily content that teaches, recruits, builds authority, and keeps RUNVARA visible.</p>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">YouTube · Facebook · Instagram</p>
+            <h1>AI trucking content engine</h1>
+          </div>
+          <div class="topbar-actions" aria-label="Primary actions">
+            <button class="button ghost" id="refresh-month">Refresh Month</button>
+            <button class="button primary" id="generate-day">Generate Today</button>
+          </div>
+        </header>
+
+        <section class="hero-grid" aria-label="Content engine overview">
+          <div class="control-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Instant planner</p>
+                <h2>30-day content calendar</h2>
+              </div>
+              <span class="status-pill ready">Monthly refresh ready</span>
+            </div>
+            <div class="input-grid">
+              <label>
+                Content angle
+                <select id="angle-select">
+                  <option>Owner-operator education</option>
+                  <option>Fleet safety and compliance</option>
+                  <option>Driver recruiting</option>
+                  <option>Freight market commentary</option>
+                  <option>RUNVARA service spotlight</option>
+                </select>
+              </label>
+              <label>
+                Voice
+                <select id="voice-select">
+                  <option>Confident industry advisor</option>
+                  <option>Friendly dispatcher</option>
+                  <option>Direct fleet operator</option>
+                  <option>Documentary narrator</option>
+                </select>
+              </label>
+              <label>
+                Platform focus
+                <select id="platform-select">
+                  <option>All platforms</option>
+                  <option>YouTube first</option>
+                  <option>Facebook first</option>
+                  <option>Instagram first</option>
+                </select>
+              </label>
+            </div>
+            <div class="metric-strip" aria-label="System status">
+              <div>
+                <strong id="metric-agents">14</strong>
+                <span>agents live</span>
+              </div>
+              <div>
+                <strong id="metric-approved">0</strong>
+                <span>approved</span>
+              </div>
+              <div>
+                <strong id="metric-scheduled">0</strong>
+                <span>scheduled</span>
+              </div>
+              <div>
+                <strong id="metric-compliance">100%</strong>
+                <span>compliant</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-panel" id="studio">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Professional video creation</p>
+                <h2>Production pipeline</h2>
+              </div>
+              <button class="icon-button" id="play-preview" aria-label="Preview video plan" title="Preview video plan">▶</button>
+            </div>
+            <ol class="pipeline-list">
+              <li><span>01</span><strong>Topic research</strong><em>Trucking pain point + RUNVARA placement</em></li>
+              <li><span>02</span><strong>Script draft</strong><em>Hook, voiceover, CTA, caption</em></li>
+              <li><span>03</span><strong>Stock footage</strong><em>Road, yard, cab, freight, compliance scenes</em></li>
+              <li><span>04</span><strong>Overlays</strong><em>Lower thirds, stats, subtitles, brand marks</em></li>
+              <li><span>05</span><strong>Voiceover</strong><em>Platform-length versions ready for review</em></li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="board-row" id="agents">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">All 14 agents working 24/7</p>
+              <h2>Agent roster</h2>
+            </div>
+          </div>
+          <div class="agent-grid" id="agent-grid"></div>
+        </section>
+
+        <section class="main-grid">
+          <div class="calendar-panel" id="calendar">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Review, edit, regenerate</p>
+                <h2>Monthly calendar</h2>
+              </div>
+              <div class="segmented" role="group" aria-label="Calendar filter">
+                <button class="is-selected" data-filter="all">All</button>
+                <button data-filter="draft">Draft</button>
+                <button data-filter="approved">Approved</button>
+                <button data-filter="scheduled">Scheduled</button>
+              </div>
+            </div>
+            <div class="calendar-list" id="calendar-list"></div>
+          </div>
+
+          <aside class="review-panel" id="approval">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Full control</p>
+                <h2>Approval queue</h2>
+              </div>
+            </div>
+            <div id="selected-content" class="selected-content"></div>
+            <div class="review-actions">
+              <button class="button secondary" id="regenerate-script">Regenerate Idea</button>
+              <button class="button ghost" id="edit-script">Edit Script</button>
+              <button class="button primary" id="approve-script">Approve</button>
+            </div>
+            <div class="compliance-box">
+              <h3>YouTube compliance</h3>
+              <label><input type="checkbox" checked /> Original educational angle</label>
+              <label><input type="checkbox" checked /> No misleading automation claims</label>
+              <label><input type="checkbox" checked /> Rights-safe stock footage plan</label>
+              <label><input type="checkbox" checked /> Brand placement disclosed naturally</label>
+            </div>
+          </aside>
+        </section>
+
+        <section class="publishing-panel" id="publishing">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Daily automated publishing</p>
+              <h2>Platform controls</h2>
+            </div>
+            <span class="status-pill pending">Approval required before posting</span>
+          </div>
+          <div class="platform-grid">
+            <article>
+              <span class="platform-badge youtube">YT</span>
+              <h3>YouTube</h3>
+              <p>Long-form video, Shorts cutdown, title, description, chapters, tags, thumbnail direction.</p>
+              <button class="button small" data-publish="YouTube">Queue Approved</button>
+            </article>
+            <article>
+              <span class="platform-badge facebook">FB</span>
+              <h3>Facebook</h3>
+              <p>Native video, caption, trucking group-safe phrasing, engagement question, RUNVARA CTA.</p>
+              <button class="button small" data-publish="Facebook">Queue Approved</button>
+            </article>
+            <article>
+              <span class="platform-badge instagram">IG</span>
+              <h3>Instagram</h3>
+              <p>Reel version, caption, hashtags, subtitle-first edit, cover frame, story teaser.</p>
+              <button class="button small" data-publish="Instagram">Queue Approved</button>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="script-dialog">
+      <form method="dialog" class="dialog-card">
+        <h2>Edit script</h2>
+        <textarea id="script-editor" rows="12"></textarea>
+        <div class="dialog-actions">
+          <button class="button ghost" value="cancel">Cancel</button>
+          <button class="button primary" id="save-script" value="default">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
