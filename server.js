@@ -2,7 +2,8 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const publicDir = path.join(__dirname, "dist");
+const distDir = path.join(__dirname, "dist");
+const publicDir = fs.existsSync(path.join(distDir, "index.html")) ? distDir : __dirname;
 const port = Number(process.env.PORT) || 4173;
 
 const contentTypes = {
